@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang for Apple风格亮度条图标：最低亮度（仅圆体，灰色）, 20261014-start -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- 太阳圆体 -->
+    <path
+        android:fillColor="#FF8E8E93"
+        android:pathData="M12,7.5a4.5,4.5 0 1,0 0,9a4.5,4.5 0 1,0 0,-9z" />
+</vector>
+<!-- prize add by yanliang for Apple风格亮度条图标：最低亮度（仅圆体，灰色）, 20261014-end -->

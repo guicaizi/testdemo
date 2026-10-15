@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Apple 风格亮度条/音量条胶囊尺寸 -->
+    <dimen name="qs_control_panel_pill_width">102dp</dimen>
+    <dimen name="qs_control_panel_pill_height">43dp</dimen>
+    <dimen name="qs_control_panel_pill_corner_radius">21.5dp</dimen>
+
+    <!-- 亮度条尺寸 -->
+    <dimen name="qs_control_panel_brightness_width">@dimen/qs_control_panel_pill_width</dimen>
+    <dimen name="qs_control_panel_brightness_height">@dimen/qs_control_panel_pill_height</dimen>
+
+    <!-- 亮度条太阳图标 -->
+    <dimen name="qs_control_panel_volume_icon_size">20dp</dimen>
+    <dimen name="qs_control_panel_volume_icon_inset">12dp</dimen>
+</resources>

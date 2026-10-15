@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang for Apple风格亮度条：深色底轨+白色填充+太阳图标, 20261014-start -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingMode="stack">
+    <!-- 深色底轨 -->
+    <item android:id="@android:id/background"
+        android:gravity="center_vertical|fill_horizontal">
+        <shape>
+            <size android:height="@dimen/qs_control_panel_pill_height" />
+            <corners android:radius="@dimen/qs_control_panel_pill_corner_radius" />
+            <solid android:color="@color/qs_control_panel_pill_track_dark" />
+        </shape>
+    </item>
+    <!-- 白色填充前景（随进度增长） -->
+    <item android:id="@android:id/progress"
+        android:gravity="center_vertical|fill_horizontal">
+        <com.example.testdemo.util.BrightnessProgressDrawable
+            android:drawable="@drawable/brightness_progress_full_drawable" />
+    </item>
+    <!-- 太阳图标（始终在最上层，按亮度等级切换光线） -->
+    <item
+        android:id="@+id/slider_icon"
+        android:gravity="center_vertical|left"
+        android:height="@dimen/qs_control_panel_volume_icon_size"
+        android:width="@dimen/qs_control_panel_volume_icon_size"
+        android:left="@dimen/qs_control_panel_volume_icon_inset"
+        android:drawable="@drawable/ic_control_panel_brightness_level" />
+</layer-list>
+<!-- prize add by yanliang for Apple风格亮度条：深色底轨+白色填充+太阳图标, 20261014-end -->

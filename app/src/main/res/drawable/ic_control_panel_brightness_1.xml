@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang for Apple风格亮度条图标：低亮度（圆体+四向光线，黄色）, 20261014-start -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- 四向光线（上/右/下/左），stroke细线+圆头 -->
+    <path
+        android:pathData="M12,7.5L12,2.5M16.5,12L21.5,12M12,16.5L12,21.5M7.5,12L2.5,12"
+        android:strokeWidth="1.4"
+        android:strokeColor="#FFFFCC00"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+    <!-- 太阳圆体 -->
+    <path
+        android:fillColor="#FFFFCC00"
+        android:pathData="M12,7.5a4.5,4.5 0 1,0 0,9a4.5,4.5 0 1,0 0,-9z" />
+</vector>
+<!-- prize add by yanliang for Apple风格亮度条图标：低亮度（圆体+四向光线，黄色）, 20261014-end -->

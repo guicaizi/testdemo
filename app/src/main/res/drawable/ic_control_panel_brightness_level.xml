@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang for Apple风格亮度条图标：按亮度等级四档切换太阳光线, 20261014-start -->
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- level 0：无光线，灰色圆体 -->
+    <item android:maxLevel="0" android:drawable="@drawable/ic_control_panel_brightness_0" />
+    <!-- level 1~3000：四向光线 -->
+    <item android:maxLevel="3000" android:drawable="@drawable/ic_control_panel_brightness_1" />
+    <!-- level 3001~6500：四向+四斜向短光线 -->
+    <item android:maxLevel="6500" android:drawable="@drawable/ic_control_panel_brightness_2" />
+    <!-- level 6501~10000：八向全光线 -->
+    <item android:maxLevel="10000" android:drawable="@drawable/ic_control_panel_brightness_3" />
+</level-list>
+<!-- prize add by yanliang for Apple风格亮度条图标：按亮度等级四档切换太阳光线, 20261014-end -->

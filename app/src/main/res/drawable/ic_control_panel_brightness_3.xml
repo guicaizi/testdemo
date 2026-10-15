@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang for Apple风格亮度条图标：高亮度（圆体+八向全光线，黄色）, 20261014-start -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- 四斜向全光线（右上/右下/左下/左上） -->
+    <path
+        android:pathData="M15.2,8.8L19.5,4.5M15.2,15.2L19.5,19.5M8.8,15.2L4.5,19.5M8.8,8.8L4.5,4.5"
+        android:strokeWidth="1.4"
+        android:strokeColor="#FFFFCC00"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+    <!-- 四向光线（上/右/下/左） -->
+    <path
+        android:pathData="M12,7.5L12,2.5M16.5,12L21.5,12M12,16.5L12,21.5M7.5,12L2.5,12"
+        android:strokeWidth="1.4"
+        android:strokeColor="#FFFFCC00"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+    <!-- 太阳圆体 -->
+    <path
+        android:fillColor="#FFFFCC00"
+        android:pathData="M12,7.5a4.5,4.5 0 1,0 0,9a4.5,4.5 0 1,0 0,-9z" />
+</vector>
+<!-- prize add by yanliang for Apple风格亮度条图标：高亮度（圆体+八向全光线，黄色）, 20261014-end -->

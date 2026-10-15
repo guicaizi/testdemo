@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang for Apple风格亮度条白色填充前景, 20261014-start -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <size android:height="@dimen/qs_control_panel_pill_height" />
+    <solid android:color="#FFFFFFFF" />
+    <corners android:radius="@dimen/qs_control_panel_pill_corner_radius" />
+</shape>
+<!-- prize add by yanliang for Apple风格亮度条白色填充前景, 20261014-end -->
