@@ -62,5 +62,24 @@
         android:layout_margin="16dp"
         android:text="切换单/双按钮" />
 
+    <!-- 测试：弹出单按钮 Dialog -->
+    <Button
+        android:id="@+id/btn_dialog_single"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_margin="16dp"
+        android:text="单按钮Dialog" />
+
+    <!-- 测试：弹出双按钮 Dialog -->
+    <Button
+        android:id="@+id/btn_dialog_double"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_marginTop="72dp"
+        android:layout_marginStart="16dp"
+        android:text="双按钮Dialog" />
+
 
 </FrameLayout>

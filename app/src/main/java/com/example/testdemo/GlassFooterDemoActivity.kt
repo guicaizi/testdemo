@@ -3,6 +3,7 @@ package com.example.testdemo
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.testdemo.widget.KusaiGlassDialog
 import com.example.testdemo.widget.KusaiPatternFooterView
 
 /**
@@ -44,5 +45,39 @@ class GlassFooterDemoActivity : AppCompatActivity() {
             toggleBtn.text = if (single) "当前：单按钮" else "当前：双按钮"
         }
         toggleBtn.text = "当前：单按钮"
+
+        // 单按钮 Dialog 演示
+        findViewById<android.widget.Button>(R.id.btn_dialog_single).setOnClickListener {
+            KusaiGlassDialog(this)
+                .setDialogTitle("Start Pairing")
+                .setSubtitle("Please make sure your Mac or PC is online")
+                .setContent("Make sure your device and computer are on the same Wi-Fi network.")
+                .setSingleButton("Start Pairing") { dialog ->
+                    Toast.makeText(this, "Start Pairing clicked", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                }
+                .show()
+        }
+
+        // 双按钮 Dialog 演示
+        findViewById<android.widget.Button>(R.id.btn_dialog_double).setOnClickListener {
+            KusaiGlassDialog(this)
+                .setDialogTitle("Draw Pattern")
+                .setSubtitle("Use at least 4 dots")
+                .setContent("Connect the dots to draw your unlock pattern.")
+                .setDoubleButtons(
+                    retryLabel = "Retry",
+                    retryListener = { dialog ->
+                        Toast.makeText(this, "Retry clicked", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+                    },
+                    continueLabel = "Continue",
+                    continueListener = { dialog ->
+                        Toast.makeText(this, "Continue clicked", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+                    }
+                )
+                .show()
+        }
     }
 }
