@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>SignalDrawable 状态效果演示</title>
+<style>
+  body {
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    background: #1e1e1e;
+    color: #ddd;
+    padding: 30px;
+  }
+  h1 { font-size: 20px; margin-bottom: 8px; }
+  h2 { font-size: 15px; margin: 28px 0 12px; color: #9cdcfe; }
+  .row { display: flex; flex-wrap: wrap; gap: 24px; }
+  .item {
+    display: flex; flex-direction: column; align-items: center;
+    background: #2d2d30; padding: 18px 14px; border-radius: 10px;
+    min-width: 90px;
+  }
+  .label { font-size: 12px; margin-top: 10px; color: #aaa; }
+  .sig svg { display: block; }
+  .toggle { margin: 12px 0; display: flex; gap: 12px; align-items: center; }
+  .toggle button {
+    background: #3c3c3c; color: #ddd; border: 1px solid #555;
+    padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px;
+  }
+  .toggle button.active { background: #0e639c; border-color: #0e639c; }
+  .note { font-size: 12px; color: #888; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<h1>SignalDrawable 三种显示状态演示</h1>
+<div class="note">模拟 frameworks_base/.../SignalDrawable.java 的绘制效果（SVG 近似还原）</div>
+
+<div class="toggle">
+  <span>主题：</span>
+  <button id="btnLight" class="active">亮色 (darkIntensity=0)</button>
+  <button id="btnDark">暗色 (darkIntensity=1)</button>
+</div>
+
+<!-- ===================== 1. 正常状态 ===================== -->
+<h2>1. 正常状态 — 不同信号强度等级（level 0~4）</h2>
+<div class="row" id="normalRow"></div>
+
+<!-- ===================== 2. STATE_CUT 挖洞 ===================== -->
+<h2>2. STATE_CUT — 右下角挖洞并叠加网络标识 (5G / LTE)</h2>
+<div class="row" id="cutRow"></div>
+
+<!-- ===================== 3. STATE_CARRIER_CHANGE 动画 ===================== -->
+<h2>3. STATE_CARRIER_CHANGE — 运营商切换（3 圆点循环动画）</h2>
+<div class="row">
+  <div class="item">
+    <div class="sig" id="animBox"></div>
+    <div class="label">动画中</div>
+  </div>
+  <div class="item">
+    <div class="sig" id="animBox2"></div>
+    <div class="label">动画中</div>
+  </div>
+</div>
+
+<!-- ===================== 4. RTL 镜像 ===================== -->
+<h2>4. RTL 布局（阿拉伯语等从右到左，图标水平镜像）</h2>
+<div class="row">
+  <div class="item">
+    <div class="sig" id="rtlNormal"></div>
+    <div class="label">LTR 正常</div>
+  </div>
+  <div class="item">
+    <div class="sig" id="rtlCut"></div>
+    <div class="label">RTL 挖洞</div>
+  </div>
+</div>
+
+<script>
+/* ===== 颜色（对应 mLightModeFillColor / mDarkModeFillColor） ===== */
+const LIGHT_COLOR = '#424242';  // 亮色模式下图标颜色
+const DARK_COLOR  = '#ffffff';  // 暗色模式下图标颜色
+let currentColor = LIGHT_COLOR;
+
+/* ===== 信号栅格（4 格，模拟 ic_signal_cellular） =====
+   用 4 根高度递增的柱子表示信号等级，亮几根 = level */
+function signalBars(level, color) {
+  const bars = [
+    { x: 0,  h: 4 },
+    { x: 6,  h: 8 },
+    { x: 12, h: 13 },
+    { x: 18, h: 18 },
+  ];
+  let svg = '';
+  bars.forEach((b, i) => {
+    const fill = i < level ? color : 'none';
+    const stroke = color;
+    svg += `<rect x="${b.x}" y="${20 - b.h}" width="4" height="${b.h}"
+             fill="${fill}" stroke="${stroke}" stroke-width="0.6" rx="0.5"/>`;
+  });
+  return svg;
+}
+
+/* ===== 完整图标 SVG（24x24 viewport，对应 VIEWPORT=24f） ===== */
+function iconSvg(level, opts = {}) {
+  const { cutOut = false, attribution = '5G', rtl = false } = opts;
+  const color = currentColor;
+  let inner = signalBars(level, color);
+
+  if (cutOut) {
+    // 挖洞：右下角矩形，再画 attribution 文字
+    inner += `
+      <rect x="11" y="11" width="12" height="12" fill="#2d2d30"/>
+      <text x="17" y="21" text-anchor="middle" font-size="8" font-weight="bold"
+            fill="${color}" font-family="Arial">${attribution}</text>`;
+  }
+
+  const transform = rtl ? 'transform="scale(-1,1) translate(-24,0)"' : '';
+  return `<svg width="96" height="96" viewBox="0 0 24 24">
+            <g ${transform}>${inner}</g>
+          </svg>`;
+}
+
+/* ===== 渲染正常状态 ===== */
+function renderNormal() {
+  const row = document.getElementById('normalRow');
+  row.innerHTML = '';
+  for (let level = 0; level <= 4; level++) {
+    const item = document.createElement('div');
+    item.className = 'item';
+    item.innerHTML = `<div class="sig">${iconSvg(level)}</div>
+                      <div class="label">level=${level}</div>`;
+    row.appendChild(item);
+  }
+}
+
+/* ===== 渲染挖洞状态 ===== */
+function renderCut() {
+  const row = document.getElementById('cutRow');
+  row.innerHTML = '';
+  const labels = [
+    { lvl: 4, attr: '5G' },
+    { lvl: 3, attr: 'LTE' },
+    { lvl: 2, attr: '4G' },
+    { lvl: 1, attr: '5G' },
+  ];
+  labels.forEach(({ lvl, attr }) => {
+    const item = document.createElement('div');
+    item.className = 'item';
+    item.innerHTML = `<div class="sig">${iconSvg(lvl, { cutOut: true, attribution: attr })}</div>
+                      <div class="label">${attr} · lvl=${lvl}</div>`;
+    row.appendChild(item);
+  });
+}
+
+/* ===== 运营商切换圆点动画 ===== */
+function renderCarrierAnim(containerId, baseLevel) {
+  const box = document.getElementById(containerId);
+  let currentDot = 0;
+  function frame() {
+    const color = currentColor;
+    let dots = '';
+    for (let i = 0; i < 3; i++) {
+      const x = 18 - i * 3.5;
+      const fill = i === currentDot ? color : 'transparent';
+      dots += `<rect x="${x}" y="20" width="2.5" height="2.5" fill="${fill}"/>`;
+    }
+    box.innerHTML = `<svg width="96" height="96" viewBox="0 0 24 24">
+                       ${signalBars(baseLevel, color)}
+                       ${dots}
+                     </svg>`;
+    currentDot = (currentDot + 1) % 3;
+  }
+  frame();
+  setInterval(frame, 1000); // DOT_DELAY = 1000ms
+}
+
+/* ===== RTL ===== */
+function renderRtl() {
+  document.getElementById('rtlNormal').innerHTML = iconSvg(4, { rtl: false });
+  document.getElementById('rtlCut').innerHTML =
+      iconSvg(4, { cutOut: true, attribution: '5G', rtl: true });
+}
+
+/* ===== 主题切换 ===== */
+function setTheme(dark) {
+  currentColor = dark ? DARK_COLOR : LIGHT_COLOR;
+  document.body.style.background = dark ? '#1e1e1e' : '#f5f5f5';
+  document.body.style.color = dark ? '#ddd' : '#222';
+  document.querySelectorAll('.item').forEach(el => {
+    el.style.background = dark ? '#2d2d30' : '#ffffff';
+  });
+  document.getElementById('btnDark').classList.toggle('active', dark);
+  document.getElementById('btnLight').classList.toggle('active', !dark);
+  renderNormal();
+  renderCut();
+  renderRtl();
+}
+document.getElementById('btnLight').onclick = () => setTheme(false);
+document.getElementById('btnDark').onclick  = () => setTheme(true);
+
+/* ===== 初始渲染 ===== */
+renderNormal();
+renderCut();
+renderRtl();
+renderCarrierAnim('animBox', 4);
+renderCarrierAnim('animBox2', 2);
+</script>
+</body>
+</html>

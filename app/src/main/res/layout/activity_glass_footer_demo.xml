@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/kusai_pin_background">
+    <FrameLayout
+        android:layout_width="480px"
+        android:layout_gravity="center"
+        android:layout_height="480px">
+        <!-- 圆形背景图（含底部绿色光晕） -->
+        <ImageView
+            android:id="@+id/kusai_pattern_bg"
+            android:layout_width="480px"
+            android:layout_height="480px"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
+            android:scaleType="fitXY"
+            android:src="@drawable/kusai_pin_bg" />
+
+        <!-- 标题 -->
+        <TextView
+            android:id="@+id/kusai_pattern_title"
+            android:layout_width="wrap_content"
+            android:layout_height="32px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="92px"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/kusai_pattern_entry_title"
+            android:textColor="@color/kusai_pin_title"
+            android:textSize="28px" />
+
+        <!-- 副标题 -->
+        <TextView
+            android:id="@+id/kusai_pattern_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="22px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="128px"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/kusai_pattern_entry_subtitle"
+            android:textColor="@color/kusai_pin_subtitle"
+            android:textSize="16px" />
+
+        <!-- 液态玻璃底栏按钮（Retry / Continue） -->
+        <com.example.testdemo.widget.KusaiPatternFooterView
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+
+
+</FrameLayout>

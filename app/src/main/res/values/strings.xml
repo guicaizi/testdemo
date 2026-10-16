@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">testDemo</string>
+    <string name="kusai_pattern_redraw">Retry</string>
+    <string name="kusai_pattern_continue">Continue</string>
+    <string name="kusai_pattern_entry_title">Draw Pattern</string>
+    <string name="kusai_pattern_entry_subtitle">Use at least 4 dots</string>
 </resources>
