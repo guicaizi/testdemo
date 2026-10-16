@@ -5,14 +5,14 @@
     android:layout_gravity="center"
     android:background="@color/kusai_pin_background">
     <FrameLayout
-        android:layout_width="480px"
-        android:layout_gravity="center"
-        android:layout_height="480px">
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:layout_gravity="center">
         <!-- 圆形背景图（含底部绿色光晕） -->
         <ImageView
             android:id="@+id/kusai_pattern_bg"
-            android:layout_width="480px"
-            android:layout_height="480px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:contentDescription="@null"
             android:importantForAccessibility="no"
             android:scaleType="fitXY"
@@ -53,6 +53,14 @@
             android:layout_height="match_parent" />
     </FrameLayout>
 
+    <!-- 测试按钮：单/双按钮模式切换 -->
+    <Button
+        android:id="@+id/btn_toggle_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="16dp"
+        android:text="切换单/双按钮" />
 
 
 </FrameLayout>
