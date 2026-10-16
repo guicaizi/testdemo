@@ -8,6 +8,7 @@
     android:background="#FF000000"
     tools:context=".MainActivity">
 
+    <!-- 亮度条：上半屏居中 -->
     <com.example.testdemo.widget.BrightnessCapsuleSlider
         android:id="@+id/brightness_slider"
         android:layout_width="@dimen/qs_control_panel_brightness_width"
@@ -16,9 +17,26 @@
         android:paddingTop="0dp"
         android:paddingEnd="0dp"
         android:paddingBottom="0dp"
+        app:layout_constraintBottom_toTopOf="@id/volume_slider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <!-- 音量条：下半屏居中，尺寸与亮度条一致 -->
+    <com.example.testdemo.widget.VolumeCapsuleSlider
+        android:id="@+id/volume_slider"
+        android:layout_width="@dimen/qs_control_panel_volume_width"
+        android:layout_height="@dimen/qs_control_panel_volume_height"
+        android:layout_marginTop="24dp"
+        android:paddingStart="0dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="0dp"
+        android:paddingBottom="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/brightness_slider"
+        app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
