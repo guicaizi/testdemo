@@ -46,12 +46,12 @@ class GlassFooterDemoActivity : AppCompatActivity() {
         }
         toggleBtn.text = "当前：单按钮"
 
-        // 单按钮 Dialog 演示
+        // 单按钮 Dialog 演示（Builder 模式，与 framework AlertDialog.Builder 同构）
         findViewById<android.widget.Button>(R.id.btn_dialog_single).setOnClickListener {
-            KusaiGlassDialog(this)
+            KusaiGlassDialog.Builder(this)
                 .setDialogTitle("Start Pairing")
-                .setSubtitle("Please make sure your Mac or PC is online")
-                .setContent("Make sure your device and computer are on the same Wi-Fi network.")
+                .setIcon(R.mipmap.ic_toast_default_img)
+                .setContent("Please make sure your Mac or PC is online.")
                 .setSingleButton("Start Pairing") { dialog ->
                     Toast.makeText(this, "Start Pairing clicked", Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
@@ -61,10 +61,10 @@ class GlassFooterDemoActivity : AppCompatActivity() {
 
         // 双按钮 Dialog 演示
         findViewById<android.widget.Button>(R.id.btn_dialog_double).setOnClickListener {
-            KusaiGlassDialog(this)
-                .setDialogTitle("Draw Pattern")
-                .setSubtitle("Use at least 4 dots")
-                .setContent("Connect the dots to draw your unlock pattern.")
+            KusaiGlassDialog.Builder(this)
+                .setDialogTitle("Draw Pattern 111")
+                .setIcon(R.mipmap.ic_launcher)
+                .setContent("Use at least 4 dots. Connect the dots to draw your unlock pattern.")
                 .setDoubleButtons(
                     retryLabel = "Retry",
                     retryListener = { dialog ->

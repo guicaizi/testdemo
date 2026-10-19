@@ -3,5 +3,7 @@
     <style name="Base.Theme.TestDemo" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- 深色模式用 DeviceDefault 暗色 alert 主题，保证 controllerType=2 玻璃链路（见 values/themes.xml 注释） -->
+        <item name="android:alertDialogTheme">@android:style/Theme.DeviceDefault.Dialog.Alert</item>
     </style>
 </resources>

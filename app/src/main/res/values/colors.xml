@@ -9,5 +9,5 @@
     <!-- 液态玻璃图案锁配色 -->
     <color name="kusai_pin_background">#000000</color>
     <color name="kusai_pin_title">#FFFFFFFF</color>
-    <color name="kusai_pin_subtitle">#A6FFFFFF</color>
+    <color name="kusai_pin_subtitle">#8CFFFFFF</color>
 </resources>

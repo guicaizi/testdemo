@@ -3,6 +3,10 @@
     <style name="Base.Theme.TestDemo" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- 让 android.app.AlertDialog 走 DeviceDefault 链（alertDialogStyle→AlertDialog.DeviceDefault
+             → parent AlertDialog.Material → controllerType=config_alertDialogController=2 → 玻璃控制器）；
+             否则 AppCompat 主题链经 android:Theme.Holo 解析到 AlertDialog.Holo，controllerType=0 老样式 -->
+        <item name="android:alertDialogTheme">@android:style/Theme.DeviceDefault.Light.Dialog.Alert</item>
     </style>
 
     <style name="Theme.TestDemo" parent="Base.Theme.TestDemo" />
