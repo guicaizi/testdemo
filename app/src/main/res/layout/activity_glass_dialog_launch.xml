@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  玻璃弹窗启动测试宿主页。
+  冷启动即弹 KusaiGlassDialog；弹窗关闭后回到此页，可手动重弹单/双按钮弹窗。
+  小屏（480 设计稿）竖排按钮可能超出屏幕高度，故用 ScrollView 兜底。
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/kusai_pin_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_launch_single"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="单按钮弹窗" />
+
+        <Button
+            android:id="@+id/btn_launch_double"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="双按钮弹窗" />
+
+        <Button
+            android:id="@+id/btn_launch_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="自定义顶部图片弹窗" />
+
+        <Button
+            android:id="@+id/btn_launch_no_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="无图标弹窗（标题/内容居中）" />
+    </LinearLayout>
+</ScrollView>

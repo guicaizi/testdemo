@@ -37,6 +37,11 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
+
+    // Dagger2：注解在编译期由 dagger-compiler 生成 DaggerXxx 组件
+    implementation(libs.dagger)
+    implementation(libs.javax.inject)
+    annotationProcessor(libs.dagger.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)

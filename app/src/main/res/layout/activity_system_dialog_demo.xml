@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  系统 Dialog 类型演示页。
+  黑色背景 + 垂直滚动按钮列表，每个按钮触发一种系统弹窗类型。
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF000000"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/btn_basic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="1. 基础弹窗（三按钮）" />
+
+        <Button
+            android:id="@+id/btn_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="2. 列表弹窗（setItems）" />
+
+        <Button
+            android:id="@+id/btn_single_choice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="3. 单选弹窗（Radio）" />
+
+        <Button
+            android:id="@+id/btn_multi_choice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="4. 多选弹窗（Checkbox）" />
+
+        <Button
+            android:id="@+id/btn_custom_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="5. 自定义 View 弹窗" />
+
+        <Button
+            android:id="@+id/btn_date_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="6. 日期选择弹窗" />
+
+        <Button
+            android:id="@+id/btn_time_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="7. 时间选择弹窗" />
+
+        <Button
+            android:id="@+id/btn_progress_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="8. 进度条弹窗（环形）" />
+
+        <Button
+            android:id="@+id/btn_progress_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="9. 进度条弹窗（水平）" />
+
+        <Button
+            android:id="@+id/btn_single_button_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="10. 单按钮提示弹窗" />
+
+        <Button
+            android:id="@+id/btn_double_button_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="11. 双按钮提示弹窗" />
+
+        <Button
+            android:id="@+id/btn_icon_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="12. 带图标提示弹窗" />
+
+    </LinearLayout>
+</ScrollView>

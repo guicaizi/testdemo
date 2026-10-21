@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  液态玻璃风格自定义 Dialog 布局 —— 样式对齐 framework
+  frameworks/base/core/res/res/layout/alert_dialog_kusai.xml。
+
+  与 framework 模板的结构对应：
+  - kusai_dialog_root   : 全屏黑底（点黑幕区域取消，逻辑在 KusaiGlassDialog）
+  - kusai_dialog_card   : 居中 480 设计稿圆盘（运行时整体 scale 2/3）
+  - kusai_dialog_bg     : 圆盘材质图（含底部绿色光晕）
+  - kusai_dialog_close  : 右上角 ✕（top|end + 24px 边距，与 framework 一致）
+  - kusai_dialog_title  : 标题（无内容 GONE）
+  - kusai_dialog_content: 内容文本（无内容 GONE）
+
+  相对 framework 模板的扩展：顶部图片槽位
+  - kusai_dialog_icon   : 标题上方的顶部图片（framework 模板无此面板）；
+    由 Builder.setIcon(resId) / setIconDrawable(drawable) 设置，
+    不设置或设置为 null 时该面板 GONE（布局无默认图），
+    此时标题 + 内容在圆盘中垂直居中显示。
+
+  其余装配逻辑（可见性开关、单/双按钮 footer、点击派发）全部沿用
+  KusaiGlassDialog.kt 现有实现，不在本文件改动。
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/kusai_dialog_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/kusai_pin_background">
+
+    <FrameLayout
+        android:id="@+id/kusai_dialog_card"
+        android:layout_width="480px"
+        android:layout_height="480px"
+        android:layout_gravity="center">
+
+        <!-- 圆形背景图（含底部绿色光晕），与 framework 模板同源 -->
+        <ImageView
+            android:id="@+id/kusai_dialog_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
+            android:scaleType="fitXY"
+            android:src="@drawable/kusai_pin_bg" />
+
+        <!-- 左上角关闭按钮：位于状态栏（48px）下方，避免被状态栏盖住 -->
+        <TextView
+            android:id="@+id/kusai_dialog_close"
+            android:layout_width="48px"
+            android:layout_height="48px"
+            android:layout_gravity="top|start"
+            android:layout_marginTop="112px"
+            android:layout_marginStart="32px"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="✕"
+            android:textColor="@color/kusai_pin_subtitle"
+            android:textSize="28px" />
+
+        <!-- 标题 + 内容：默认无图标，整组在圆盘中垂直居中；
+             设置图标后图标在上、标题/内容依次下排 -->
+        <LinearLayout
+            android:layout_width="360px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <!-- 顶部图片（扩展面板）：无图标时 GONE（可见性由 KusaiGlassDialog 控制） -->
+            <ImageView
+                android:id="@+id/kusai_dialog_icon"
+                android:layout_width="196px"
+                android:layout_height="196px"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@null"
+                android:importantForAccessibility="no"
+                android:scaleType="fitCenter"
+                android:visibility="gone" />
+
+            <!-- 标题：样式对齐 framework 模板（medium / 居中 / kusai_pin_title） -->
+            <TextView
+                android:id="@+id/kusai_dialog_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8px"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="greate hahah"
+                android:textColor="@color/kusai_pin_title"
+                android:textSize="24px" />
+
+            <!-- 内容：样式对齐 framework 模板（居中 / kusai_pin_subtitle / 16px） -->
+            <TextView
+                android:id="@+id/kusai_dialog_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8px"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="greate hahah"
+                android:includeFontPadding="false"
+                android:textColor="@color/kusai_pin_subtitle"
+                android:textSize="16px" />
+        </LinearLayout>
+
+        <!-- 液态玻璃底栏按钮（单按钮 / 双按钮），与 framework 模板同位（画布 y≈396 起） -->
+        <com.example.testdemo.widget.KusaiPatternFooterView
+            android:id="@+id/kusai_dialog_footer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+</FrameLayout>

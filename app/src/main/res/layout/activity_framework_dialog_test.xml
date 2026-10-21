@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  framework 原生 AlertDialog 验证页（验证 controllerType=kusai 玻璃控制器）。
+  注意：androidx AlertDialog 不走 framework AlertController，验证移植必须用 android.app.AlertDialog。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/kusai_pin_background"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_fw_single"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="单按钮（玻璃）" />
+
+    <Button
+        android:id="@+id/btn_fw_double"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="双按钮（玻璃）" />
+
+    <Button
+        android:id="@+id/btn_fw_triple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="三按钮（fallback 标准）" />
+
+    <Button
+        android:id="@+id/btn_fw_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="列表（fallback 标准）" />
+
+    <Button
+        android:id="@+id/btn_fw_custom_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="自定义 View（玻璃）" />
+
+</LinearLayout>
