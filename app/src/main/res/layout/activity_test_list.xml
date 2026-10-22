@@ -67,5 +67,12 @@
             android:layout_marginBottom="12dp"
             android:text="6. Dagger2 注解测试（30 项）" />
 
+        <Button
+            android:id="@+id/btn_permission_demo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="7. 系统权限申请（拒绝→跳转设置）" />
+
     </LinearLayout>
 </ScrollView>

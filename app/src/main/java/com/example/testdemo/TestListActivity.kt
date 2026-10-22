@@ -35,5 +35,8 @@ class TestListActivity : AppCompatActivity() {
         findViewById<View>(R.id.btn_dagger_annotation).setOnClickListener {
             startActivity(Intent(this, DaggerAnnotationActivity::class.java))
         }
+        findViewById<View>(R.id.btn_permission_demo).setOnClickListener {
+            startActivity(Intent(this, PermissionDemoActivity::class.java))
+        }
     }
 }

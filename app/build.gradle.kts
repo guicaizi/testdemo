@@ -44,5 +44,7 @@ dependencies {
     annotationProcessor(libs.dagger.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.espresso.intents)
+    androidTestImplementation(libs.androidx.test.uiautomator)
     androidTestImplementation(libs.androidx.junit)
 }
