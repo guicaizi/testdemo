@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang for 液态玻璃库 API 演示布局, 20261023-start -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/black"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/kusai_pin_bg"
+        android:layout_gravity="center"
+        android:layout_height="match_parent">
+        <com.example.testdemo.widget.KusaiGlassCapsuleView
+            android:id="@+id/kusai_capsule"
+            android:layout_width="100dp"
+            android:layout_height="53dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40px" />
+    </RelativeLayout>
+
+    <!-- prize add by yanliang for 胶囊液态玻璃按钮（KusaiPatternFooterView 配方）, 20261023-start -->
+
+
+
+</FrameLayout>
+<!-- prize add by yanliang for 液态玻璃库 API 演示布局, 20261023-end -->

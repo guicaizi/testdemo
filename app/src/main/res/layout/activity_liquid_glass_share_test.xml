@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang for 液态玻璃背景采样测试布局（单胶囊可拖动）, 20261023-start -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF000000">
+
+    <!-- 四象限背景：每块颜色/明暗不同，拖到哪块就能看出玻璃采样的是哪块背景 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#FFDDDDDD"
+                android:gravity="center"
+                android:text="区域1\n浅灰"
+                android:textColor="#FF333333"
+                android:textSize="20px" />
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#FF0DDB58"
+                android:gravity="center"
+                android:text="区域2\n绿色"
+                android:textColor="#FFFFFFFF"
+                android:textSize="20px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#FF333333"
+                android:gravity="center"
+                android:text="区域3\n深灰"
+                android:textColor="#FFDDDDDD"
+                android:textSize="20px" />
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#FF2060E0"
+                android:gravity="center"
+                android:text="区域4\n蓝色"
+                android:textColor="#FFFFFFFF"
+                android:textSize="20px" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 单个玻璃胶囊：参数提取自 n06SystemUi 控制面板工作模式胶囊 -->
+    <com.example.testdemo.widget.ControlPanelPillView
+        android:id="@+id/pill_mode"
+        android:layout_width="102dp"
+        android:layout_height="43dp"
+        android:layout_gravity="center" />
+</FrameLayout>
+<!-- prize add by yanliang for 液态玻璃背景采样测试布局（单胶囊可拖动）, 20261023-end -->
