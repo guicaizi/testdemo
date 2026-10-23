@@ -214,6 +214,10 @@ public final class GlassBackdrop {
         if (!ok) {
             return false;
         }
+        // 软件画布 root.draw 会清掉整棵 View 树的 dirty 标志，导致硬件加速 View
+        // （特别是自定义 onDraw 的玻璃控件）认为显示列表无需重建、画面空白。
+        // 这里强制整树 invalidate，让下一帧硬件渲染重新构建显示列表。
+        root.invalidate();
         mRegion.set(region);
         mDirty = false;
         mCaptureCount++;

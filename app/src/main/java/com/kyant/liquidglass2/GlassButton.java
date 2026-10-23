@@ -17,24 +17,22 @@
 package com.kyant.liquidglass2;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.widget.Button;
+import android.view.View;
 
 /**
- * 按钮版液态玻璃。默认是胶囊形 + 一层背景模糊 + vibrancy，
- * 并开启按下跟手高光 —— 这三样合起来最接近 AndroidLiquidGlass 里
- * {@code LiquidButton} 的配方。
+ * 按钮版液态玻璃。
  *
- * <pre>{@code
- * GlassButton button = findViewById(R.id.get_started);
- * button.setOnClickListener(v -> { ... });
- * }</pre>
- *
- * <p>按钮通常压在轮廓光、图标或壁纸上，是折射最容易被看出来的地方。
- * 如果发现效果不明显，先确认按钮背后确实有明暗变化的内容。
+ * <p>直接继承 {@link View}（而不是 Button/TextView），因为 TextView 基类在硬件加速 +
+ * 软件画布抓背景的组合下会干扰自定义 onDraw 的硬件显示列表，导致玻璃本体不可见。
+ * 文字自己用 {@link TextPaint} 居中绘制。
  */
-public class GlassButton extends Button {
+public class GlassButton extends View {
 
     private static GlassStyle sDefaultStyle = GlassStyle.builder()
             .capsule()
@@ -45,10 +43,9 @@ public class GlassButton extends Button {
     private final GlassController mController = new GlassController();
     private GlassPressHighlight mPressHighlight;
 
-    /**
-     * 全局默认样式。请在创建任何 {@link GlassButton} 之前调用
-     * （比如 {@code Application#onCreate}）。
-     */
+    private final TextPaint mTextPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
+    private CharSequence mText = "";
+
     public static void setDefaultStyle(GlassStyle style) {
         if (style != null) {
             sDefaultStyle = style;
@@ -64,16 +61,29 @@ public class GlassButton extends Button {
     }
 
     public GlassButton(Context context, AttributeSet attrs) {
-        this(context, attrs, android.R.attr.buttonStyle);
+        this(context, attrs, 0);
     }
 
     public GlassButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        // 从 XML 读 android:text
+        if (attrs != null) {
+            TypedArray a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.text});
+            CharSequence t = a.getText(0);
+            if (t != null) {
+                mText = t;
+            }
+            a.recycle();
+        }
         mController.attach(this);
         mController.setStyle(sDefaultStyle);
         setWillNotDraw(false);
-        // 玻璃本身就是背景；留着框架默认的按钮背景会盖住玻璃、也会被折进抓取结果
+        setClickable(true);
+        setFocusable(true);
         setBackground(null);
+        mTextPaint.setColor(Color.WHITE);
+        mTextPaint.setTextSize(18f * context.getResources().getDisplayMetrics().density);
+        mTextPaint.setTextAlign(Paint.Align.CENTER);
         setInteractiveHighlight(true);
     }
 
@@ -89,9 +99,30 @@ public class GlassButton extends Button {
         mController.setStyle(style);
     }
 
-    /** 外部数据变化后强制重抓背景。 */
+    public void setText(CharSequence text) {
+        mText = text == null ? "" : text;
+        invalidate();
+    }
+
+    public CharSequence getText() {
+        return mText;
+    }
+
+    public void setTextColor(int color) {
+        mTextPaint.setColor(color);
+        invalidate();
+    }
+
+    public void setTextSize(float sp) {
+        mTextPaint.setTextSize(sp * getResources().getDisplayMetrics().density);
+        invalidate();
+    }
+
+    /** 外部数据或位置变化后强制重抓背景（重算位置 + 标记脏）。 */
     public void refreshGlassBackdrop() {
+        mController.onLayout();
         mController.invalidateBackdrop();
+        invalidate();
     }
 
     public void setInteractiveHighlight(boolean enabled) {
@@ -129,7 +160,12 @@ public class GlassButton extends Button {
             return;
         }
         mController.draw(canvas, getWidth(), getHeight());
-        super.onDraw(canvas);
+        // 居中画文字
+        if (mText != null && mText.length() > 0) {
+            Paint.FontMetrics fm = mTextPaint.getFontMetrics();
+            float textY = (getHeight() - fm.ascent - fm.descent) / 2f;
+            canvas.drawText(mText.toString(), getWidth() / 2f, textY, mTextPaint);
+        }
     }
 
     @Override

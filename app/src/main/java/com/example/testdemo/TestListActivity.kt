@@ -42,6 +42,9 @@ class TestListActivity : AppCompatActivity() {
         findViewById<View>(R.id.btn_liquid_glass).setOnClickListener {
             startActivity(Intent(this, LiquidGlassDemoActivity::class.java))
         }
+        findViewById<View>(R.id.btn_glass_share_test).setOnClickListener {
+            startActivity(Intent(this, LiquidGlassShareTestActivity::class.java))
+        }
         // prize add by yanliang for 液态玻璃库 API 演示入口, 20261023-end
     }
 }
