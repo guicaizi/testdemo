@@ -74,5 +74,14 @@
             android:layout_marginBottom="12dp"
             android:text="7. 系统权限申请（拒绝→跳转设置）" />
 
+        <!-- prize add by yanliang for 液态玻璃库 API 演示入口, 20261023-start -->
+        <Button
+            android:id="@+id/btn_liquid_glass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="8. 液态玻璃库 API 演示" />
+        <!-- prize add by yanliang for 液态玻璃库 API 演示入口, 20261023-end -->
+
     </LinearLayout>
 </ScrollView>

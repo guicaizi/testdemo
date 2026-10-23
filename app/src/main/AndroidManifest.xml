@@ -50,6 +50,13 @@
             android:exported="true">
         </activity>
 
+        <!-- prize add by yanliang for 液态玻璃库 API 演示页, 20261023-start -->
+        <activity
+            android:name=".LiquidGlassDemoActivity"
+            android:exported="true">
+        </activity>
+        <!-- prize add by yanliang for 液态玻璃库 API 演示页, 20261023-end -->
+
         <activity
             android:name=".TestListActivity"
             android:exported="true">

@@ -38,5 +38,10 @@ class TestListActivity : AppCompatActivity() {
         findViewById<View>(R.id.btn_permission_demo).setOnClickListener {
             startActivity(Intent(this, PermissionDemoActivity::class.java))
         }
+        // prize add by yanliang for 液态玻璃库 API 演示入口, 20261023-start
+        findViewById<View>(R.id.btn_liquid_glass).setOnClickListener {
+            startActivity(Intent(this, LiquidGlassDemoActivity::class.java))
+        }
+        // prize add by yanliang for 液态玻璃库 API 演示入口, 20261023-end
     }
 }

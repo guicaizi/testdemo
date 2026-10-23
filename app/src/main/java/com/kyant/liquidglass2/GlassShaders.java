@@ -14,7 +14,7 @@
    limitations under the License.
  */
 
-package com.kyant.liquidglass;
+package com.kyant.liquidglass2;
 
 /**
  * AGSL（Android Graphics Shading Language）着色器源码常量。

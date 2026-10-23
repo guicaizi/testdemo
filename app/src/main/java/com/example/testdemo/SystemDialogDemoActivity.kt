@@ -176,7 +176,7 @@ class SystemDialogDemoActivity : AppCompatActivity() {
     private fun showSingleButtonTipDialog() {
         AlertDialog.Builder(this)
             .setTitle("提示")
-            .setMessage("操作已完成，这是一个单按钮提示弹窗。")
+            .setMessage("操作已完成。")
             .setPositiveButton("确定") { _, _ -> toast("点击了确定") }
             .show()
     }

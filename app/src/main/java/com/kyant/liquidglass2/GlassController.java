@@ -14,7 +14,7 @@
    limitations under the License.
  */
 
-package com.kyant.liquidglass;
+package com.kyant.liquidglass2;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

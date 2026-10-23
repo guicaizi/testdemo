@@ -14,73 +14,67 @@
    limitations under the License.
  */
 
-package com.kyant.liquidglass;
+package com.kyant.liquidglass2;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Shader;
 import android.util.AttributeSet;
-import android.widget.TextView;
+import android.widget.Button;
 
 /**
- * 文字版液态玻璃。默认样式就是设计稿规格（{@link GlassStyle#spec()}）：
- * 圆角 8px / 折射 50 / 深度 10 / 色散 45 / 高光 -45° 28% / 填充 15% 白。
- *
- * <p>所以协议行那个 61×26 的 chip 可以纯 XML 落地，不需要写代码：
- *
- * <pre>{@code
- * <com.kyant.liquidglass.GlassTextView
- *     android:id="@+id/agreement_view"
- *     android:layout_width="61px"
- *     android:layout_height="26px"
- *     android:gravity="center"
- *     android:textSize="18px"
- *     android:textColor="#A6FFFFFF"
- *     android:text="@string/privacy_view" />
- * }</pre>
- *
- * <p>换成胶囊形（按钮）时在代码里改一次样式即可：
+ * 按钮版液态玻璃。默认是胶囊形 + 一层背景模糊 + vibrancy，
+ * 并开启按下跟手高光 —— 这三样合起来最接近 AndroidLiquidGlass 里
+ * {@code LiquidButton} 的配方。
  *
  * <pre>{@code
- * button.setGlassStyle(GlassStyle.builder()
- *         .capsule()
- *         .blur(2f)
- *         .vibrancy()
- *         .build());
- * button.setInteractiveHighlight(true);
+ * GlassButton button = findViewById(R.id.get_started);
+ * button.setOnClickListener(v -> { ... });
  * }</pre>
  *
- * <p>基类是框架的 {@link TextView} 而不是 {@code AppCompatTextView} ——
- * 这是刻意的：整个工具包因此<b>零第三方依赖</b>，静态库退化成纯 jar，
- * 不触发 AOSP 的资源 / AAR 构建路径（见 Android.mk 的说明）。
- * 设备是 Android 14，AppCompat 那些向后兼容补丁本来也用不上。
+ * <p>按钮通常压在轮廓光、图标或壁纸上，是折射最容易被看出来的地方。
+ * 如果发现效果不明显，先确认按钮背后确实有明暗变化的内容。
  */
-public class GlassTextView extends TextView {
+public class GlassButton extends Button {
+
+    private static GlassStyle sDefaultStyle = GlassStyle.builder()
+            .capsule()
+            .blur(4f)
+            .vibrancy()
+            .build();
 
     private final GlassController mController = new GlassController();
     private GlassPressHighlight mPressHighlight;
-    private Shader mTextShader;
 
-    public GlassTextView(Context context) {
+    /**
+     * 全局默认样式。请在创建任何 {@link GlassButton} 之前调用
+     * （比如 {@code Application#onCreate}）。
+     */
+    public static void setDefaultStyle(GlassStyle style) {
+        if (style != null) {
+            sDefaultStyle = style;
+        }
+    }
+
+    public static GlassStyle getDefaultStyle() {
+        return sDefaultStyle;
+    }
+
+    public GlassButton(Context context) {
         this(context, null);
     }
 
-    public GlassTextView(Context context, AttributeSet attrs) {
-        this(context, attrs, android.R.attr.textViewStyle);
+    public GlassButton(Context context, AttributeSet attrs) {
+        this(context, attrs, android.R.attr.buttonStyle);
     }
 
-    public GlassTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public GlassButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mController.attach(this);
+        mController.setStyle(sDefaultStyle);
         setWillNotDraw(false);
-        // 玻璃本身就是背景；留着原背景会在抓取时被折进去形成重影
+        // 玻璃本身就是背景；留着框架默认的按钮背景会盖住玻璃、也会被折进抓取结果
         setBackground(null);
-    }
-
-    /** 设置文字渐变 shader，每次 onDraw 都会重新应用到 TextPaint（绕过 Layout 缓存） */
-    public void setTextShader(Shader shader) {
-        mTextShader = shader;
-        invalidate();
+        setInteractiveHighlight(true);
     }
 
     public GlassController glassController() {
@@ -100,7 +94,6 @@ public class GlassTextView extends TextView {
         mController.invalidateBackdrop();
     }
 
-    /** 打开按下跟手高光。 */
     public void setInteractiveHighlight(boolean enabled) {
         if (enabled) {
             if (mPressHighlight == null) {
@@ -136,11 +129,6 @@ public class GlassTextView extends TextView {
             return;
         }
         mController.draw(canvas, getWidth(), getHeight());
-        // 每次绘制前强制应用文字 shader —— TextView 内部 Layout 会缓存 Paint 状态，
-        // 外部 setPaint().setShader() 在 Layout 创建后不生效，必须在 onDraw 里重设
-        if (mTextShader != null) {
-            getPaint().setShader(mTextShader);
-        }
         super.onDraw(canvas);
     }
 

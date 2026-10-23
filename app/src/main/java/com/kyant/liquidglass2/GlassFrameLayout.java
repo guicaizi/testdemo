@@ -14,67 +14,51 @@
    limitations under the License.
  */
 
-package com.kyant.liquidglass;
+package com.kyant.liquidglass2;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
-import android.widget.Button;
+import android.widget.FrameLayout;
 
 /**
- * 按钮版液态玻璃。默认是胶囊形 + 一层背景模糊 + vibrancy，
- * 并开启按下跟手高光 —— 这三样合起来最接近 AndroidLiquidGlass 里
- * {@code LiquidButton} 的配方。
+ * 把任意内容装进液态玻璃里的容器。
+ *
+ * <p>玻璃画在内容下面，子 View 照常工作。默认样式是 {@link GlassStyle#spec()}。
  *
  * <pre>{@code
- * GlassButton button = findViewById(R.id.get_started);
- * button.setOnClickListener(v -> { ... });
+ * GlassFrameLayout card = new GlassFrameLayout(context);
+ * card.setGlassStyle(GlassStyle.builder()
+ *         .uniformCorner(24f)
+ *         .blur(6f)
+ *         .vibrancy()
+ *         .build());
+ * card.addView(titleView);
  * }</pre>
  *
- * <p>按钮通常压在轮廓光、图标或壁纸上，是折射最容易被看出来的地方。
- * 如果发现效果不明显，先确认按钮背后确实有明暗变化的内容。
+ * <p>注意：玻璃必须叠在「有内容可折」的背景上。纯色背景上折射和色散恒等于输入，
+ * 只有边缘高光会显示。
  */
-public class GlassButton extends Button {
-
-    private static GlassStyle sDefaultStyle = GlassStyle.builder()
-            .capsule()
-            .blur(4f)
-            .vibrancy()
-            .build();
+public class GlassFrameLayout extends FrameLayout {
 
     private final GlassController mController = new GlassController();
     private GlassPressHighlight mPressHighlight;
 
-    /**
-     * 全局默认样式。请在创建任何 {@link GlassButton} 之前调用
-     * （比如 {@code Application#onCreate}）。
-     */
-    public static void setDefaultStyle(GlassStyle style) {
-        if (style != null) {
-            sDefaultStyle = style;
-        }
-    }
-
-    public static GlassStyle getDefaultStyle() {
-        return sDefaultStyle;
-    }
-
-    public GlassButton(Context context) {
+    public GlassFrameLayout(Context context) {
         this(context, null);
     }
 
-    public GlassButton(Context context, AttributeSet attrs) {
-        this(context, attrs, android.R.attr.buttonStyle);
+    public GlassFrameLayout(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
     }
 
-    public GlassButton(Context context, AttributeSet attrs, int defStyleAttr) {
+    public GlassFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mController.attach(this);
-        mController.setStyle(sDefaultStyle);
+        // ViewGroup 默认 WILL_NOT_DRAW，不关掉 onDraw 根本不会被调用
         setWillNotDraw(false);
-        // 玻璃本身就是背景；留着框架默认的按钮背景会盖住玻璃、也会被折进抓取结果
+        // 玻璃本身就是背景，原有的背景会在抓取时被折进去形成重影
         setBackground(null);
-        setInteractiveHighlight(true);
     }
 
     public GlassController glassController() {
@@ -94,6 +78,7 @@ public class GlassButton extends Button {
         mController.invalidateBackdrop();
     }
 
+    /** 打开按下跟手高光。宿主会自动变 clickable，否则收不到后续的 MOVE / UP。 */
     public void setInteractiveHighlight(boolean enabled) {
         if (enabled) {
             if (mPressHighlight == null) {
@@ -124,12 +109,17 @@ public class GlassButton extends Button {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        // 抓背景时必须整个跳过，否则文字会被折进玻璃里变成重影
+        mController.draw(canvas, getWidth(), getHeight());
+        super.onDraw(canvas);
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        // 抓背景时要连子 View 一起跳过，否则会把玻璃里的内容折进去
         if (GlassBackdrop.isCapturing()) {
             return;
         }
-        mController.draw(canvas, getWidth(), getHeight());
-        super.onDraw(canvas);
+        super.dispatchDraw(canvas);
     }
 
     @Override

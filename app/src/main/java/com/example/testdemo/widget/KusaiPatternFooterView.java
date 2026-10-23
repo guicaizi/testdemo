@@ -16,11 +16,11 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.testdemo.R;
-import com.kyant.liquidglass.GlassBackdrop;
-import com.kyant.liquidglass.GlassController;
-import com.kyant.liquidglass.GlassHighlight;
-import com.kyant.liquidglass.GlassStyle;
-import com.kyant.liquidglass.GlassSurface;
+import com.kyant.liquidglass2.GlassBackdrop;
+import com.kyant.liquidglass2.GlassController;
+import com.kyant.liquidglass2.GlassHighlight;
+import com.kyant.liquidglass2.GlassStyle;
+import com.kyant.liquidglass2.GlassSurface;
 
 /**
  * 图案页底栏：480 蒙版坐标。
