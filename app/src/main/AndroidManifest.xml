@@ -62,6 +62,13 @@
         </activity>
         <!-- prize add by yanliang for 液态玻璃库 API 演示页, 20261023-end -->
 
+        <!-- prize add by yanliang for 指纹录入环效果 Demo, 20261028-start -->
+        <activity
+            android:name=".FingerprintDemoActivity"
+            android:exported="true"
+            android:theme="@style/Theme.TestDemo.Fingerprint" />
+        <!-- prize add by yanliang for 指纹录入环效果 Demo, 20261028-end -->
+
         <activity
             android:name=".TestListActivity"
             android:exported="true">

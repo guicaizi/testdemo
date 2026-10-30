@@ -4,6 +4,7 @@
   列出项目中所有测试 Activity，点击对应按钮跳转进去测试。
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/test_list_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF000000"
@@ -89,6 +90,15 @@
             android:layout_marginBottom="12dp"
             android:text="9. 共享背景抓取机制测试" />
         <!-- prize add by yanliang for 液态玻璃库 API 演示入口, 20261023-end -->
+
+        <!-- prize add by yanliang for 指纹录入环效果 Demo 入口, 20261028-start -->
+        <Button
+            android:id="@+id/btn_fingerprint_demo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="10. 指纹录入环效果（圆盘/渐变/发光）" />
+        <!-- prize add by yanliang for 指纹录入环效果 Demo 入口, 20261028-end -->
 
     </LinearLayout>
 </ScrollView>
