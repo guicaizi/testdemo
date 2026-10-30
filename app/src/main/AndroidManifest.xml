@@ -69,6 +69,13 @@
             android:theme="@style/Theme.TestDemo.Fingerprint" />
         <!-- prize add by yanliang for 指纹录入环效果 Demo, 20261028-end -->
 
+        <!-- prize add by yanliang for 指纹管理页 Demo, 20261030-start -->
+        <activity
+            android:name=".FingerprintManagementActivity"
+            android:exported="true"
+            android:theme="@style/Theme.TestDemo.Fingerprint" />
+        <!-- prize add by yanliang for 指纹管理页 Demo, 20261030-end -->
+
         <activity
             android:name=".TestListActivity"
             android:exported="true">

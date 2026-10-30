@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang 20261030-start
+     指纹列表项（单个入口）：徽章 + 名称 + 删除。
+     尺寸按 1.0 缩放标定，非聚焦项的缩小由 ScalingStackLayout 统一缩放，这里不再做两套尺寸 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/fp_mgr_card_height"
+    android:background="@drawable/fp_mgr_card_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/fp_mgr_card_padding_h">
+
+    <FrameLayout
+        android:layout_width="@dimen/fp_mgr_badge_size"
+        android:layout_height="@dimen/fp_mgr_badge_size"
+        android:background="@drawable/fp_mgr_badge_bg">
+
+        <ImageView
+            android:layout_width="@dimen/fp_mgr_icon_size"
+            android:layout_height="@dimen/fp_mgr_icon_size"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            android:src="@drawable/fp_mgr_fingerprint" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/fp_item_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8px"
+        android:layout_weight="1"
+        android:includeFontPadding="false"
+        android:textColor="@color/fp_mgr_text_primary"
+        android:textSize="@dimen/fp_mgr_body_size" />
+
+    <ImageView
+        android:id="@+id/fp_item_delete"
+        android:layout_width="@dimen/fp_mgr_trash_size"
+        android:layout_height="@dimen/fp_mgr_trash_size"
+        android:contentDescription="@string/fp_mgr_delete"
+        android:src="@drawable/fp_mgr_trash" />
+</LinearLayout>
+<!-- prize add by yanliang for 抽取指纹列表项为独立布局, 20261030-end -->

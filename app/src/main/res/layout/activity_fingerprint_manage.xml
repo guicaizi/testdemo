@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang 20261030-start
+     指纹管理页按设计稿重排：480×480 画布，顶部对齐的竖向栈
+     标题 30px → 副标题 17px → 开关行（文字+开关整体居中）→ 两张胶囊列表项
+     底部按钮不再放在竖栈里：它按设计稿要「贴着屏幕圆底边」，高度由 82px 固定，
+     放竖栈里会因为字体度量差异被顶下去，所以改成直接挂在根 FrameLayout 上、bottom 对齐。 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fp_mgr_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/fp_mgr_padding"
+        android:paddingTop="@dimen/fp_mgr_padding_top">
+
+        <TextView
+            android:id="@+id/fp_mgr_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/fp_mgr_title"
+            android:textColor="@color/fp_mgr_text_primary"
+            android:textSize="@dimen/fp_mgr_title_size" />
+
+        <TextView
+            android:id="@+id/fp_mgr_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4px"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/fp_mgr_subtitle"
+            android:textColor="@color/fp_mgr_text_secondary"
+            android:textSize="@dimen/fp_mgr_subtitle_size" />
+
+        <!-- 开关行：文字与开关作为一个整体水平居中（设计稿不是左右分列） -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24px"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="@string/fp_mgr_unlock"
+                android:textColor="@color/fp_mgr_text_primary"
+                android:textSize="@dimen/fp_mgr_row_size" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/fp_mgr_switch"
+                android:layout_width="@dimen/fp_mgr_switch_width"
+                android:layout_height="@dimen/fp_mgr_switch_height"
+                android:layout_marginStart="14px"
+                android:background="@null"
+                android:checked="true"
+                android:paddingStart="0px"
+                android:paddingEnd="0px"
+                android:thumb="@drawable/fp_mgr_switch_thumb"
+                app:switchPadding="0dp"
+                app:thumbTextPadding="0dp"
+                app:thumbTint="@color/fp_mgr_thumb"
+                app:track="@drawable/fp_mgr_switch_track"
+                app:trackTint="@color/fp_mgr_switch_track_tint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fp_mgr_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28px"
+            android:orientation="vertical">
+
+            <!-- 指纹列表：可滚动，聚焦项 1.0 缩放、其余按 minItemScale 缩小
+                 0.865 = (416 - 28*2) / 416，即设计稿标注的左右各内缩 28px -->
+            <com.example.testdemo.widget.ScalingStackLayout
+                android:id="@+id/fp_mgr_list"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fp_mgr_list_height"
+                app:itemGap="@dimen/fp_mgr_card_gap"
+                app:minItemScale="0.865" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 底部主按钮：292×82，底边贴着屏幕圆底（设计稿 y398..480）。
+         背景 @drawable/fp_mgr_button_add_bg 是矢量状态选择器：
+         下边缘=屏幕圆 r240 的弧、两端是尖角、顶边 R75 圆角，常态/按下/禁用三态都在 XML 里。
+         文字：20px bold + letterSpacing 0.03 —— 设计稿用的是 Inter，系统 Roboto 同字号窄 9px，
+         靠字距补回宽度；颜色 90% 白（实测峰值 231）；不加 padding，居中正好落在实测 y≈439.5。 -->
+    <TextView
+        android:id="@+id/fp_mgr_add"
+        android:layout_width="@dimen/fp_mgr_button_width"
+        android:layout_height="@dimen/fp_mgr_button_height"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@drawable/fp_mgr_button_add_bg"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:letterSpacing="0.03"
+        android:text="@string/fp_mgr_add"
+        android:textColor="@color/fp_mgr_btn_text"
+        android:textSize="@dimen/fp_mgr_body_size" />
+</FrameLayout>
+<!-- prize add by yanliang for 按钮改为贴屏幕底边并按实测尺寸定位, 20261030-end -->

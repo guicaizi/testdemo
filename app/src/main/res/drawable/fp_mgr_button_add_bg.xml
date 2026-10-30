@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang 20261030-start
+     「Add fingerprint」按钮背景的状态入口，布局里直接 @drawable/fp_mgr_button_add_bg 即可。
+     顺序有意义：禁用优先于按下，最后才是常态（selector 从上往下匹配，命中即止）。
+     三个 item 都是同一个矢量形状，只换渐变，所以切状态不会有形状跳动。 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@drawable/fp_mgr_button_add_bg_disabled"
+        android:state_enabled="false" />
+
+    <item
+        android:drawable="@drawable/fp_mgr_button_add_bg_pressed"
+        android:state_pressed="true" />
+
+    <item android:drawable="@drawable/fp_mgr_button_add_bg_normal" />
+</selector>
+<!-- prize add by yanliang for 底部按钮改为 XML 状态选择器, 20261030-end -->

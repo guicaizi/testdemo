@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang 20261030-start
+     ScalingStackLayout 的自定义属性：项间距、非聚焦项最小缩放 -->
+<resources>
+    <declare-styleable name="ScalingStackLayout">
+        <!-- 相邻两项的视觉间距（px） -->
+        <attr name="itemGap" format="dimension" />
+        <!-- 非聚焦项的缩放比，1.0 表示不缩放 -->
+        <attr name="minItemScale" format="float" />
+    </declare-styleable>
+</resources>
+<!-- prize add by yanliang for 新增缩放列表控件属性, 20261030-end -->

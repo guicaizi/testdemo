@@ -100,5 +100,14 @@
             android:text="10. 指纹录入环效果（圆盘/渐变/发光）" />
         <!-- prize add by yanliang for 指纹录入环效果 Demo 入口, 20261028-end -->
 
+        <!-- prize add by yanliang for 指纹管理页 Demo 入口, 20261030-start -->
+        <Button
+            android:id="@+id/btn_fingerprint_manage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="11. 指纹管理页（Fingerprint Management）" />
+        <!-- prize add by yanliang for 指纹管理页 Demo 入口, 20261030-end -->
+
     </LinearLayout>
 </ScrollView>

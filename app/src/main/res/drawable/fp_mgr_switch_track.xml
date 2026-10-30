@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang 20261030-start
+     开关轨道：只定义形状（42×22 小胶囊），颜色交给 fp_mgr_switch_track_tint 按选中态着色
+     —— 直接用 solid 上色会被 Material3 主题的 trackTint 覆盖成紫色 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFFFFFFF" />
+    <corners android:radius="11px" />
+</shape>
+<!-- prize add by yanliang for 开关轨道改为纯形状+外部着色, 20261030-end -->

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang 20261030-start
+     「Add fingerprint」常态背景 —— 按设计截图逐像素拟合，不是估的。
+     形状 = 屏幕圆 ∩ 上方带大圆角的矩形，局部视口 292×82（设计稿 480 画布里的 x94..386 / y398..480）：
+       · 下边缘 = 屏幕圆的一段弧（圆心在视口外 (146,-158)，r=240），最低点 (146,82) 正好落在屏幕底
+       · 左右尖角 = 圆角矩形与屏幕圆的交点，(0,32.5) / (292,32.5)，因此两端是尖的而不是圆的
+       · 顶边 = y=0 水平线，左右各一个 R75 圆角，切点 x=61.8 / 230.2
+     校验：下弧过 (0,32.5)(146,82)(292,32.5)，反解 r = (146²+49.5²)/(2×49.5) = 240.06 ✓
+     渐变：alpha 0 @ y=-7 → alpha 1 @ y=55，向下 clamp 为实色（斜率 1/62，与实测 0.0166/px 一致）
+     不写上沿高光：设计截图里顶边被选中框压住，实测填充顶部就是低 alpha 绿，没有亮边。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="292dp"
+    android:height="82dp"
+    android:viewportWidth="292"
+    android:viewportHeight="82">
+
+    <path android:pathData="M0,32.5A75,75 0 0 1 61.8,0L230.2,0A75,75 0 0 1 292,32.5A240,240 0 0 1 0,32.5Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endColor="#FF0DDB58"
+                android:endX="146"
+                android:endY="55"
+                android:startColor="#000DDB58"
+                android:startX="146"
+                android:startY="-7"
+                android:type="linear" />
+        </aapt:attr>
+    </path>
+</vector>
+<!-- prize add by yanliang for 按钮按设计截图实测几何重做（尖端透镜形）, 20261030-end -->

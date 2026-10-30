@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang 20261030-start
+     「Add fingerprint」按下态：几何与常态完全一致（同一段 pathData），只把绿色整体提亮一档，
+     渐变端点也保持一致（-7 → 55），所以按下时不会出现明暗交界线跳动。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="292dp"
+    android:height="82dp"
+    android:viewportWidth="292"
+    android:viewportHeight="82">
+
+    <path android:pathData="M0,32.5A75,75 0 0 1 61.8,0L230.2,0A75,75 0 0 1 292,32.5A240,240 0 0 1 0,32.5Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endColor="#FF3BEF85"
+                android:endX="146"
+                android:endY="55"
+                android:startColor="#2414E061"
+                android:startX="146"
+                android:startY="-7"
+                android:type="linear" />
+        </aapt:attr>
+    </path>
+</vector>
+<!-- prize add by yanliang for 按钮按下态沿用实测几何, 20261030-end -->

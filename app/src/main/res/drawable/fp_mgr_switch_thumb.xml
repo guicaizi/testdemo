@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- prize add by yanliang 20261030-start
+     开关滑块：18×18 白色圆形滑块（默认 SwitchCompat 滑块按 dp 换算，在 320dpi 上偏大） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/fp_mgr_thumb" />
+    <size
+        android:width="18px"
+        android:height="18px" />
+</shape>
+<!-- prize add by yanliang for 新增开关滑块样式, 20261030-end -->

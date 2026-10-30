@@ -77,5 +77,11 @@ class TestListActivity : AppCompatActivity() {
             startActivity(Intent(this, FingerprintDemoActivity::class.java))
         }
         // prize add by yanliang for 指纹录入环效果 Demo 入口, 20261028-end
+
+        // prize add by yanliang for 指纹管理页 Demo 入口, 20261030-start
+        findViewById<View>(R.id.btn_fingerprint_manage).setOnClickListener {
+            startActivity(Intent(this, FingerprintManagementActivity::class.java))
+        }
+        // prize add by yanliang for 指纹管理页 Demo 入口, 20261030-end
     }
 }

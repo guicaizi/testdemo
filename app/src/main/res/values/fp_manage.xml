@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- prize add by yanliang 20261030-start
+         按设计稿重做指纹管理页：配色/尺寸/字号全部按 480×480 画布重新标定
+         卡片改为 #262626 全圆角胶囊、徽章提亮、按钮改上下渐变绿 -->
+    <!-- 指纹管理页（480×480 px 圆屏，px 单位不受 density 影响） -->
+    <color name="fp_mgr_bg">#FF000000</color>
+    <color name="fp_mgr_card">#FF262626</color>
+    <color name="fp_mgr_badge_bg">#FF454545</color>
+    <color name="fp_mgr_text_primary">#FFFFFFFF</color>
+    <!-- 按钮文字：设计稿实测白色峰值 231/255 ≈ 90% 不透明，不是纯白 -->
+    <color name="fp_mgr_btn_text">#E6FFFFFF</color>
+    <color name="fp_mgr_text_secondary">#FF8E8E93</color>
+    <color name="fp_mgr_icon_gray">#FF9A9A9E</color>
+    <color name="fp_mgr_green">#FF30D158</color>
+    <color name="fp_mgr_switch_off">#FF3A3A3C</color>
+    <color name="fp_mgr_thumb">#FFFFFFFF</color>
+    <color name="fp_mgr_btn_grad_top">#FF04190C</color>
+    <color name="fp_mgr_btn_grad_bottom">#FF0DDB58</color>
+
+    <dimen name="fp_mgr_padding">32px</dimen>
+    <dimen name="fp_mgr_padding_top">77px</dimen>
+    <dimen name="fp_mgr_title_size">29px</dimen>
+    <dimen name="fp_mgr_subtitle_size">17px</dimen>
+    <dimen name="fp_mgr_row_size">18px</dimen>
+    <dimen name="fp_mgr_body_size">20px</dimen>
+
+    <dimen name="fp_mgr_card_height">80px</dimen>
+    <dimen name="fp_mgr_card_radius">40px</dimen>
+    <dimen name="fp_mgr_card_padding_h">20px</dimen>
+    <dimen name="fp_mgr_card_gap">16px</dimen>
+    <!-- 列表可视区高度：正好容纳「聚焦项 + 一项缩小项」，第 3 项起需要滚动 -->
+    <dimen name="fp_mgr_list_height">176px</dimen>
+    <dimen name="fp_mgr_badge_size">56px</dimen>
+    <dimen name="fp_mgr_icon_size">31px</dimen>
+    <dimen name="fp_mgr_trash_size">26px</dimen>
+
+    <dimen name="fp_mgr_switch_width">42px</dimen>
+    <dimen name="fp_mgr_switch_height">22px</dimen>
+
+    <!-- 底部按钮：292×82 取自设计截图实测（x94..386 / y398..480），
+         形状（屏幕圆 r240 + 顶角 R75 + 两端尖角）已固化在 fp_mgr_button_add_bg*.xml 的 pathData 里，
+         所以这里只留布局要用的宽高，不再有 arc/radius 两个 dimen -->
+    <dimen name="fp_mgr_button_width">292px</dimen>
+    <dimen name="fp_mgr_button_height">82px</dimen>
+    <!-- prize add by yanliang for 按钮尺寸按实测几何更新, 20261030-end -->
+
+    <string name="fp_mgr_title">Fingerprint Management</string>
+    <string name="fp_mgr_subtitle">Add or delete items, can add up to 3</string>
+    <string name="fp_mgr_unlock">Fingerprint unlock</string>
+    <string name="fp_mgr_add">Add fingerprint</string>
+    <string name="fp_mgr_item">Fingerprint %1$d</string>
+    <string name="fp_mgr_deleted">Fingerprint %1$d deleted</string>
+    <string name="fp_mgr_limit">Up to 3 fingerprints</string>
+    <string name="fp_mgr_delete">Delete</string>
+</resources>
