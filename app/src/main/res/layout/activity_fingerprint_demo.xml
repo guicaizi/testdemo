@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 指纹录入环 Demo：黑底铺满，标题 / 230px 环 + 210px 圆盘 / 提示，底部调试条 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fp_demo_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fp_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fp_demo_gap"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/fp_demo_title"
+            android:textColor="@color/fp_demo_title"
+            android:textSize="@dimen/fp_demo_title_size"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:id="@+id/fp_center"
+            android:layout_width="@dimen/fp_demo_progress_size"
+            android:layout_height="@dimen/fp_demo_progress_size"
+            android:layout_gravity="center_horizontal">
+
+            <View
+                android:id="@+id/fp_disc"
+                android:layout_width="@dimen/fp_demo_disc_size"
+                android:layout_height="@dimen/fp_demo_disc_size"
+                android:layout_gravity="center"
+                android:background="@drawable/fp_demo_disc" />
+
+            <com.example.testdemo.widget.WatchRingProgressBar
+                android:id="@+id/fp_ring"
+                style="@android:style/Widget.Material.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/fp_demo_print"
+                android:max="10000"
+                android:progress="0"
+                android:progressBackgroundTint="@android:color/transparent"
+                android:progressDrawable="@drawable/fp_demo_ring_progress" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/fp_hint"
+            android:layout_width="@dimen/fp_demo_hint_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/fp_demo_gap"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/fp_demo_hint"
+            android:textColor="@color/fp_demo_hint"
+            android:textSize="@dimen/fp_demo_hint_size" />
+    </LinearLayout>
+
+    <!-- 仅 Demo 用的调试条：拖动看进度弧/发光，点圆盘切换提示 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:alpha="0.9"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="4dp">
+
+        <SeekBar
+            android:id="@+id/fp_seek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="10000" />
+
+        <TextView
+            android:id="@+id/fp_seek_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/fp_demo_seek_label"
+            android:textColor="#80FFFFFF"
+            android:textSize="11sp" />
+    </LinearLayout>
+</FrameLayout>

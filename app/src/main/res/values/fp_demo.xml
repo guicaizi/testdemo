@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 指纹录入环 Demo（480×480 px 画布，px 单位不受 density 影响） -->
+    <color name="fp_demo_bg">#FF000000</color>
+    <color name="fp_demo_disc">#FF3E3E3E</color>
+    <color name="fp_demo_disc_stroke">#FF4C4C4C</color>
+    <color name="fp_demo_arc_start">#FF5CFF6B</color>
+    <color name="fp_demo_arc_end">#FF1E9E3C</color>
+    <color name="fp_demo_glow">#803BE05A</color>
+    <color name="fp_demo_title">#FFFFFFFF</color>
+    <color name="fp_demo_hint">#99FFFFFF</color>
+
+    <dimen name="fp_demo_progress_size">230px</dimen>
+    <dimen name="fp_demo_disc_size">210px</dimen>
+    <dimen name="fp_demo_ring_thickness">4px</dimen>
+    <dimen name="fp_demo_glow_radius">6px</dimen>
+    <dimen name="fp_demo_gap">40px</dimen>
+    <dimen name="fp_demo_hint_width">260px</dimen>
+    <dimen name="fp_demo_title_size">28px</dimen>
+    <dimen name="fp_demo_hint_size">16px</dimen>
+
+    <string name="fp_demo_title">Fingerprint 3</string>
+    <string name="fp_demo_hint">Multiple touches of the side button</string>
+    <string name="fp_demo_error">Lift finger, then touch sensor again</string>
+    <string name="fp_demo_seek_label">progress 0% · 点圆盘切换提示</string>
+</resources>

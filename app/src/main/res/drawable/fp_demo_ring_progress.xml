@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 指纹录入环：sweep 渐变 + useLevel 裁剪；发光由 WatchRingProgressBar 叠加 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape
+            android:innerRadiusRatio="2.2"
+            android:shape="ring"
+            android:thickness="@dimen/fp_demo_ring_thickness"
+            android:useLevel="false">
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <rotate
+            android:fromDegrees="270"
+            android:pivotX="50%"
+            android:pivotY="50%"
+            android:toDegrees="270">
+            <shape
+                android:innerRadiusRatio="2.2"
+                android:shape="ring"
+                android:thickness="@dimen/fp_demo_ring_thickness"
+                android:useLevel="true">
+                <gradient
+                    android:endColor="@color/fp_demo_arc_end"
+                    android:startColor="@color/fp_demo_arc_start"
+                    android:type="sweep" />
+            </shape>
+        </rotate>
+    </item>
+</layer-list>
