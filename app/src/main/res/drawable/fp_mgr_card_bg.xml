@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- prize add by yanliang 20261030-start
-     指纹列表项卡片：设计稿为全圆角胶囊（半径 = 高度一半），底色 #262626 -->
+<!-- 指纹列表项卡片：深灰圆角背景 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <solid android:color="@color/fp_mgr_card" />
     <corners android:radius="@dimen/fp_mgr_card_radius" />
 </shape>
-<!-- prize add by yanliang for 按设计稿重做指纹列表卡片为全圆角胶囊, 20261030-end -->
